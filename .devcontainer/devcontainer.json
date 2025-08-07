@@ -1,0 +1,53 @@
+{
+  "name": "Server",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "server",
+  "runServices": ["server"],
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "esbenp.prettier-vscode",
+        "ms-vscode.docker",
+        "ms-vscode.vscode-typescript-next"
+      ],
+      "settings": {
+        "typescript.tsdk": "/app/node_modules/typescript/lib",
+        "typescript.enablePromptUseWorkspaceTsdk": true,
+        "typescript.preferences.importModuleSpecifier": "non-relative",
+        "javascript.preferences.importModuleSpecifier": "non-relative",
+        "typescript.tsserver.maxTsServerMemory": 8192,
+        "typescript.tsserver.watchOptions": {
+          "watchFile": "useFsEvents",
+          "watchDirectory": "useFsEvents",
+          "fallbackPolling": "dynamicPriorityPolling"
+        },
+        "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+        "typescript.disableAutomaticTypeAcquisition": false,
+        "typescript.updateImportsOnFileMove.enabled": "always",
+        "typescript.suggest.autoImports": true,
+        "typescript.surveys.enabled": false,
+        "files.watcherExclude": {
+          "**/node_modules/*/**": true,
+          "**/dist/**": true,
+          "**/build/**": true
+        },
+        "search.exclude": {
+          "**/node_modules": true,
+          "**/dist": true,
+          "**/build": true
+        },
+        "git.enabled": true,
+        "git.path": "/usr/bin/git"
+      }
+    }
+  },
+  "forwardPorts": [8080, 4040],
+  "remoteUser": "node",
+  "updateRemoteUserUID": true,
+  "postCreateCommand": "npm install",
+  "waitFor": "postCreateCommand",
+  "shutdownAction": "stopContainer"
+}
