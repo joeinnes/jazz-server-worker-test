@@ -1,0 +1,28 @@
+volumes:
+  node_modules_data:
+
+services:
+  server:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    ports:
+      - '8080:8080'
+      - '4040:4040'
+    volumes:
+      - ..:/app
+      - node_modules_data:/app/node_modules
+    env_file:
+      - ../.env.local
+    environment:
+      - NODE_ENV=development
+      - NPM_CONFIG_FORCE=true
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - PORT=8080
+    # Use the new script as the command
+    command: ./.devcontainer/start-server-with-ngrok.sh
+    restart: unless-stopped
+    init: true
+    stdin_open: true
+    tty: true

@@ -1,0 +1,13 @@
+{
+  "type": "module",
+  "scripts": {
+    "server:dev": "tsx --env-file=.env.local index.ts"
+  },
+  "dependencies": {
+    "jazz-tools": "^0.16.4",
+    "tsx": "^4.20.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.0"
+  }
+}
